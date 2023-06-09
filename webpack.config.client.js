@@ -1,5 +1,5 @@
+const { HotModuleReplacementPlugin } = require("webpack")
 const path = require('path')
-const HTMLWebpackPlugin = require('html-webpack-plugin');
 const dotenv = require('dotenv')
 
 dotenv.config()
@@ -8,9 +8,17 @@ const mode = process.env.NODE_ENV ?? 'production'
 const isDev = process.env.NODE_ENV !== 'production'
 const PORT = process.env.PORT
 
+let entries = ['./src/app/index.tsx']
+let plugins = [];
+
+if(isDev){
+  entries.unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true')
+  plugins.push(new HotModuleReplacementPlugin())
+}
+
 module.exports = {
   name: 'client',
-  entry: './src/app/index.tsx',
+  entry: entries,
   mode,
   devtool: isDev ? 'eval-source-map' : undefined,
   stats: 'errors-only',
@@ -50,11 +58,7 @@ module.exports = {
       },
     ]
   },
-  plugins: [
-    new HTMLWebpackPlugin({
-      template: './src/public/index.html',
-    })
-  ],
+  plugins,
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
