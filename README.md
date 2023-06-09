@@ -5,11 +5,17 @@
 ```
 yarn 
 ```
+```
+npm install 
+```
 
 ### Development
 
 ```
 yarn dev
+```
+```
+npm run dev
 ```
 
 
@@ -17,4 +23,7 @@ yarn dev
 
 ```
 yarn start
+```
+```
+npm run start
 ```
