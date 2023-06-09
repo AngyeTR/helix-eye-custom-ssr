@@ -1,4 +1,5 @@
 # Helix Eye
+Helix Eye is an app that consumes the NASA's API to display their records. The main objective of this project is to develop a custom engine for SSR to deploy this Helix Eye app.
 
 ### Install dependencies
 
